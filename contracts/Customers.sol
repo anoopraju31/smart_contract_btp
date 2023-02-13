@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 
 interface IProductVerification {
     function changeStatus(uint _codeId) external;
+
+    function changeOwner(uint _codeId, address _newOwner) external;
 }
 
 contract Customers {
@@ -35,6 +37,31 @@ contract Customers {
     }
 
     function reportStolen(uint _codeId) public validCustomer {
+        bool check = checkProductOwnedByCustomer(_codeId);
+
+        require(check == true, "Sorry, you don't own this product.");
+
+        productVerificationContract.changeStatus(_codeId);
+    }
+
+    function changeOwnership(
+        uint _codeId,
+        address _newOwner
+    ) public validCustomer {
+        bool check = checkProductOwnedByCustomer(_codeId);
+
+        require(check == true, "Sorry, you don't own this product.");
+        require(
+            customers[_newOwner].isValue == true,
+            "Please, Register the owner address."
+        );
+
+        productVerificationContract.changeOwner(_codeId, _newOwner);
+    }
+
+    function checkProductOwnedByCustomer(
+        uint _codeId
+    ) public view returns (bool) {
         bool check;
         uint[] memory codeArray = customers[msg.sender].products;
 
@@ -45,7 +72,6 @@ contract Customers {
             }
         }
 
-        require(check == true, "Sorry, you don't own this product.");
-        productVerificationContract.changeStatus(_codeId);
+        return check;
     }
 }

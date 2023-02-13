@@ -85,5 +85,16 @@ contract ProductVerification {
         code.status = 2;
     }
 
-    function changeOwner(uint _codeId, address _newOwner) external {}
+    function changeOwner(uint _codeId, address _newOwner) external {
+        require(
+            codes[_codeId].currentOwner == msg.sender,
+            "Only owner of the product is allowed"
+        );
+
+        Code storage code = codes[_codeId];
+        code.currentOwner = _newOwner;
+        uint len = code.supplyChain.length;
+        code.supplyChain[len - 1].transferTo = _newOwner;
+        code.supplyChain[len - 1].transferTimestamp = block.timestamp;
+    }
 }
