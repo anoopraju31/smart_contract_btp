@@ -6,6 +6,7 @@ import "./SupplyPlayers.sol";
 interface IProductVerification {
     function addToSupplyChain(
         uint _codeId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
@@ -71,6 +72,30 @@ contract Distributors is SupplyPlayers {
         }
     }
 
+    function getDistributor(
+        address _distributor
+    )
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            uint,
+            bool,
+            string[] memory
+        )
+    {
+        return (
+            distributors[_distributor].name,
+            distributors[_distributor].owner,
+            distributors[_distributor].contactAddress,
+            distributors[_distributor].phone,
+            distributors[_distributor].isValue,
+            distributors[_distributor].ipfsHashs
+        );
+    }
+
     function addToCodeSupplyChain(
         uint _codeId,
         uint _manufactureTimestamp,
@@ -79,6 +104,7 @@ contract Distributors is SupplyPlayers {
     ) public onlyDistributor {
         productVerificationContract.addToSupplyChain(
             _codeId,
+            msg.sender,
             _manufactureTimestamp,
             _transferAddrees,
             _transferTimestamp

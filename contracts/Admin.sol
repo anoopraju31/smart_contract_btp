@@ -28,15 +28,15 @@ contract Admin {
         manufacturersAddress.push(_manufacturer);
     }
 
-    function addDistributor(address _distributor) public onlyAdmin {
+    function addDistributor(address _distributor) public {
         distributorsAddress.push(_distributor);
     }
 
-    function addWholesaler(address _wholesaler) public onlyAdmin {
+    function addWholesaler(address _wholesaler) public {
         wholesalersAddress.push(_wholesaler);
     }
 
-    function addRetailer(address _retailer) public onlyAdmin {
+    function addRetailer(address _retailer) public {
         retailersAddress.push(_retailer);
     }
 }

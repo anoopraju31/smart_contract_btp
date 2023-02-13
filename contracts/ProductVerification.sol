@@ -84,13 +84,14 @@ contract ProductVerification {
 
     function addToSupplyChain(
         uint _codeId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
     ) external {
         require(codes[_codeId].isvalue == true, "Invalid Code Id!");
         SupplyChain memory supplyChain;
-        supplyChain.entityAddress = msg.sender;
+        supplyChain.entityAddress = _entityAddress;
         supplyChain.recivalTimestamp = _manufactureTimestamp;
         supplyChain.transferTo = _transferAddrees;
         supplyChain.transferTimestamp = _transferTimestamp;
