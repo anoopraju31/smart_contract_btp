@@ -2,15 +2,24 @@
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
-import "./Admin.sol";
+
+interface IAdmin {
+    function getAdmin() external view returns (address);
+}
 
 /*
  * @title Products
  * @dev The Product contract contains a Product struct which stores details of each products and
  * a mapping to access the details.
  */
-contract Products is Admin {
+contract Products {
+    IAdmin adminContract;
+
     uint prductId = 0;
+
+    constructor(address _admin) {
+        adminContract = IAdmin(_admin);
+    }
 
     event ProductCreated(uint productId);
     event ProductNoLongerInProduction(uint productId);
@@ -23,6 +32,14 @@ contract Products is Admin {
         string[] ipfsHashs;
         bool isInProduction;
         bool isValue;
+    }
+
+    modifier onlyAdmin() {
+        require(
+            msg.sender == adminContract.getAdmin(),
+            "Only amdin is allowed!"
+        );
+        _;
     }
 
     modifier validId(uint productId) {
@@ -44,7 +61,7 @@ contract Products is Admin {
         string memory _model,
         string memory _description,
         string[] memory _ipfsHashs
-    ) public onlyAdmin {
+    ) public {
         prductId++;
         Product storage product = products[prductId];
 

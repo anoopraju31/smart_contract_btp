@@ -1,12 +1,18 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "./SupplyPlayers.sol";
-import "./Admin.sol";
+
+interface IAdmin {
+    function addManufacturer(address _manufacturer) external;
+
+    function getAdmin() external view returns (address);
+}
 
 interface IProductVerification {
     function createCode(
         uint _productId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
@@ -17,13 +23,19 @@ interface IProduct {
     function isValidProduct(uint _id) external view returns (bool);
 }
 
-contract Manufacturers is SupplyPlayers, Admin {
+contract Manufacturers is SupplyPlayers {
+    IAdmin adminContract;
     IProduct productContract;
     IProductVerification productVerificationContract;
 
     event CodeCreated(uint _id);
 
-    constructor(address _productVerification, address _product) {
+    constructor(
+        address _admin,
+        address _productVerification,
+        address _product
+    ) {
+        adminContract = IAdmin(_admin);
         productContract = IProduct(_product);
         productVerificationContract = IProductVerification(
             _productVerification
@@ -31,6 +43,14 @@ contract Manufacturers is SupplyPlayers, Admin {
     }
 
     mapping(address => SupplyPlayer) public manufacturers;
+
+    modifier onlyAdmin() {
+        require(
+            msg.sender == adminContract.getAdmin(),
+            "Only amdin is allowed!"
+        );
+        _;
+    }
 
     modifier onlyManufacturer() {
         require(
@@ -49,7 +69,7 @@ contract Manufacturers is SupplyPlayers, Admin {
         string[] memory _ipfsHashs
     ) external onlyAdmin {
         SupplyPlayer storage manufacturer = manufacturers[_manufacturerAddress];
-        manufacturersAddress.push(_manufacturerAddress);
+        adminContract.addManufacturer(_manufacturerAddress);
 
         manufacturer.role = "manufacturer";
         manufacturer.name = _name;
@@ -81,6 +101,7 @@ contract Manufacturers is SupplyPlayers, Admin {
 
         uint codeId = productVerificationContract.createCode(
             _productId,
+            msg.sender,
             _manufactureTimestamp,
             _transferAddrees,
             _transferTimestamp

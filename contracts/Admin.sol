@@ -23,4 +23,20 @@ contract Admin {
         require(msg.sender == _admin, "Only amdin is allowed!");
         _;
     }
+
+    function addManufacturer(address _manufacturer) public {
+        manufacturersAddress.push(_manufacturer);
+    }
+
+    function addDistributor(address _distributor) public onlyAdmin {
+        distributorsAddress.push(_distributor);
+    }
+
+    function addWholesaler(address _wholesaler) public onlyAdmin {
+        wholesalersAddress.push(_wholesaler);
+    }
+
+    function addRetailer(address _retailer) public onlyAdmin {
+        retailersAddress.push(_retailer);
+    }
 }

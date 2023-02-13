@@ -10,6 +10,7 @@ contract ProductVerification {
 
     IManufacture manufacturerContract;
     uint codeId = 0;
+    bool public ischange;
 
     constructor(address _manufacturer) {
         manufacturerContract = IManufacture(_manufacturer);
@@ -32,19 +33,26 @@ contract ProductVerification {
 
     mapping(uint => Code) public codes;
 
+    function changeManufacturer(address _manufacturer) public {
+        require(ischange == false, "Already changed");
+        manufacturerContract = IManufacture(_manufacturer);
+        ischange = true;
+    }
+
     function createCode(
         uint _productId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
     ) external returns (uint) {
-        require(
-            manufacturerContract.isValidManufacturer() == true,
-            "Only Manufacturer is allowed!"
-        );
+        // require(
+        //     manufacturerContract.isValidManufacturer() == true,
+        //     "Only Manufacturer is allowed!"
+        // );
 
         SupplyChain memory supplyChain;
-        supplyChain.entityAddress = msg.sender;
+        supplyChain.entityAddress = _entityAddress;
         supplyChain.recivalTimestamp = _manufactureTimestamp;
         supplyChain.transferTo = _transferAddrees;
         supplyChain.transferTimestamp = _transferTimestamp;
@@ -59,6 +67,19 @@ contract ProductVerification {
         emit CreateProductCode(codeId);
 
         return codeId;
+    }
+
+    function getCode(
+        uint _codeId
+    ) public view returns (uint, uint8, SupplyChain[] memory, address, bool) {
+        // Code memory code = codes[_codeId];
+        return (
+            codes[_codeId].productId,
+            codes[_codeId].status,
+            codes[_codeId].supplyChain,
+            codes[_codeId].currentOwner,
+            codes[_codeId].isvalue
+        );
     }
 
     function addToSupplyChain(

@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "./SupplyPlayers.sol";
-import "./Admin.sol";
 
 interface IProductVerification {
     function addToSupplyChain(
@@ -13,16 +12,32 @@ interface IProductVerification {
     ) external;
 }
 
-contract Distributors is SupplyPlayers, Admin {
+interface IAdmin {
+    function addDistributor(address _manufacturer) external;
+
+    function getAdmin() external view returns (address);
+}
+
+contract Distributors is SupplyPlayers {
+    IAdmin adminContract;
     IProductVerification productVerificationContract;
 
-    constructor(address _productVerification) {
+    constructor(address _admin, address _productVerification) {
+        adminContract = IAdmin(_admin);
         productVerificationContract = IProductVerification(
             _productVerification
         );
     }
 
     mapping(address => SupplyPlayer) public distributors;
+
+    modifier onlyAdmin() {
+        require(
+            msg.sender == adminContract.getAdmin(),
+            "Only amdin is allowed!"
+        );
+        _;
+    }
 
     modifier onlyDistributor() {
         require(
@@ -41,7 +56,7 @@ contract Distributors is SupplyPlayers, Admin {
         string[] memory _ipfsHashs
     ) external onlyAdmin {
         SupplyPlayer storage distributor = distributors[_distributorAddress];
-        distributorsAddress.push(_distributorAddress);
+        adminContract.addDistributor(_distributorAddress);
 
         distributor.role = "distributor";
         distributor.name = _name;
