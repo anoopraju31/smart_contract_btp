@@ -100,21 +100,28 @@ contract ProductVerification {
         code.supplyChain.push(supplyChain);
     }
 
+    function addOwner(uint _codeId, address _owner) public {
+        Code storage code = codes[_codeId];
+        code.currentOwner = _owner;
+        code.status = 1;
+    }
+
     function changeStatus(uint _codeId) external {
         require(codes[_codeId].isvalue == true, "Invalid Code Id!");
 
         Code storage code = codes[_codeId];
-        code.status = 2;
+        code.status = 3;
     }
 
     function changeOwner(uint _codeId, address _newOwner) external {
-        require(
-            codes[_codeId].currentOwner == msg.sender,
-            "Only owner of the product is allowed"
-        );
+        // require(
+        //     codes[_codeId].currentOwner == msg.sender,
+        //     "Only owner of the product is allowed"
+        // );
 
         Code storage code = codes[_codeId];
         code.currentOwner = _newOwner;
+        code.status = 2;
         uint len = code.supplyChain.length;
         code.supplyChain[len - 1].transferTo = _newOwner;
         code.supplyChain[len - 1].transferTimestamp = block.timestamp;

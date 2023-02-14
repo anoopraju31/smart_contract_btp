@@ -7,19 +7,28 @@ import "./Admin.sol";
 interface IProductVerification {
     function addToSupplyChain(
         uint _codeId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
     ) external;
+
+    function addOwner(uint _codeId, address _owner) external;
 }
 
-contract Retailer is SupplyPlayers, Admin {
-    IProductVerification productVerificationContract;
+interface ICustomer {
+    function addProduct(address _customer, uint _codeId) external;
+}
 
-    constructor(address _productVerification) {
+contract Retailers is SupplyPlayers, Admin {
+    IProductVerification productVerificationContract;
+    ICustomer customerContract;
+
+    constructor(address _productVerification, address _customer) {
         productVerificationContract = IProductVerification(
             _productVerification
         );
+        customerContract = ICustomer(_customer);
     }
 
     event RetailerCreated(address _retailerAddress);
@@ -58,6 +67,28 @@ contract Retailer is SupplyPlayers, Admin {
         }
     }
 
+    function getRetailer(
+        address _retailer
+    )
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            uint,
+            string[] memory
+        )
+    {
+        return (
+            retailers[_retailer].name,
+            retailers[_retailer].owner,
+            retailers[_retailer].contactAddress,
+            retailers[_retailer].phone,
+            retailers[_retailer].ipfsHashs
+        );
+    }
+
     function addToCodeSupplyChain(
         uint _codeId,
         uint _manufactureTimestamp,
@@ -66,10 +97,28 @@ contract Retailer is SupplyPlayers, Admin {
     ) public onlyRetailers {
         productVerificationContract.addToSupplyChain(
             _codeId,
+            msg.sender,
             _manufactureTimestamp,
             _transferAddrees,
             _transferTimestamp
         );
+    }
+
+    function addCustomerToCode(
+        uint _codeId,
+        address _customer,
+        uint _manufactureTimestamp
+    ) public {
+        productVerificationContract.addToSupplyChain(
+            _codeId,
+            _customer,
+            _manufactureTimestamp,
+            0x0000000000000000000000000000000000000000,
+            0
+        );
+
+        productVerificationContract.addOwner(_codeId, _customer);
+        customerContract.addProduct(_customer, _codeId);
     }
 
     function updateName(

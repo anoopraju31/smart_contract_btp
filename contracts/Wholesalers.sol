@@ -7,13 +7,14 @@ import "./Admin.sol";
 interface IProductVerification {
     function addToSupplyChain(
         uint _codeId,
+        address _entityAddress,
         uint _manufactureTimestamp,
         address _transferAddrees,
         uint _transferTimestamp
     ) external;
 }
 
-contract Wholesaler is SupplyPlayers, Admin {
+contract Wholesalers is SupplyPlayers, Admin {
     IProductVerification productVerificationContract;
 
     constructor(address _productVerification) {
@@ -66,9 +67,32 @@ contract Wholesaler is SupplyPlayers, Admin {
     ) public onlyWholesaler {
         productVerificationContract.addToSupplyChain(
             _codeId,
+            msg.sender,
             _manufactureTimestamp,
             _transferAddrees,
             _transferTimestamp
+        );
+    }
+
+    function getWholesaler(
+        address _wholesaler
+    )
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            uint,
+            string[] memory
+        )
+    {
+        return (
+            wholesalers[_wholesaler].name,
+            wholesalers[_wholesaler].owner,
+            wholesalers[_wholesaler].contactAddress,
+            wholesalers[_wholesaler].phone,
+            wholesalers[_wholesaler].ipfsHashs
         );
     }
 
