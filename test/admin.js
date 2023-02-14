@@ -75,7 +75,7 @@ describe('Admin', () => {
     it('should return the admin address', async () => {
       const adminAddress = await adminContract.getAdmin();
       // console.log(adminAddress);
-      // console.log('Admin address: ', admin.address);
+      console.log('Admin address: ', admin.address);
       expect(adminAddress).to.be.eq(admin.address);
     });
 
@@ -92,13 +92,13 @@ describe('Admin', () => {
       const [isInProduction, brand, name, model, description, ipfsHashs] =
         await productContract.getProduct(1);
 
-      // console.log('Product deatails:');
-      // console.log('Brand : ', brand);
-      // console.log('Name : ', name);
-      // console.log('Model : ', model);
-      // console.log('Description : ', description);
-      // console.log('Ipfs Hashs : ', ipfsHashs[0]);
-      // console.log('Is In Production : ', isInProduction);
+      console.log('Product deatails:');
+      console.log('Brand : ', brand);
+      console.log('Name : ', name);
+      console.log('Model : ', model);
+      console.log('Description : ', description);
+      console.log('Ipfs Hashs : ', ipfsHashs[0]);
+      console.log('Is In Production : ', isInProduction);
 
       expect(isInProduction).to.be.eq(true);
       expect(brand).to.be.eq('Nike');
@@ -147,12 +147,12 @@ describe('Admin', () => {
       expect(manufacturerData.isBlocked).to.be.eq(false);
       expect(manufacturerData.isValue).to.be.eq(true);
 
-      // console.log('Manufacture Data: ');
-      // console.log('Name : ', manufacturerData.name);
-      // console.log('Owner : ', manufacturerData.owner);
-      // console.log('Contact Address : ', manufacturerData.contactAddress);
-      // console.log('Phone Number : ', manufacturerData.phone);
-      // console.log('Is Blocked : ', manufacturerData.isBlocked);
+      console.log('Manufacture Data: ');
+      console.log('Name : ', manufacturerData.name);
+      console.log('Owner : ', manufacturerData.owner);
+      console.log('Contact Address : ', manufacturerData.contactAddress);
+      console.log('Phone Number : ', manufacturerData.phone);
+      console.log('Is Blocked : ', manufacturerData.isBlocked);
     });
 
     it('Should create a product code', async () => {
@@ -163,23 +163,23 @@ describe('Admin', () => {
 
       const [productId, status, supplyChain, currentOwner, isValue] =
         await productVerificationContract.getCode(1);
-      // console.log(productId, status, supplyChain, currentOwner, isValue);
+      console.log(productId, status, supplyChain, currentOwner, isValue);
 
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
       // console.log('     ', supplyChain[0].)
 
       expect(productId).to.be.eq(1);
@@ -208,12 +208,12 @@ describe('Admin', () => {
 
       // console.log(name, owner, contactAddress, phone, isValue, ipfsHashs);
 
-      // console.log('Distributor Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Owner: ', owner);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone: ', phone);
-      // console.log(' IPFS Hashs: ', ipfsHashs[0]);
+      console.log('Distributor Details: ');
+      console.log(' Name: ', name);
+      console.log(' Owner: ', owner);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone: ', phone);
+      console.log(' IPFS Hashs: ', ipfsHashs[0]);
 
       expect(name).to.be.eq('Shivam & Sons');
       expect(owner).to.be.eq('Shivam');
@@ -231,35 +231,35 @@ describe('Admin', () => {
 
       const [productId, status, supplyChain, currentOwner, isValue] =
         await productVerificationContract.getCode(1);
-      // console.log(productId, status, supplyChain, currentOwner, isValue);
-      // console.log(manufacturer.address);
+      console.log(productId, status, supplyChain, currentOwner, isValue);
+      console.log(manufacturer.address);
 
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
 
       expect(productId).to.be.eq(1);
       expect(status).to.be.eq(0);
@@ -290,12 +290,12 @@ describe('Admin', () => {
         await wholesalerContract.getWholesaler(wholesaler.address);
       // console.log(name, owner, contactAddress, phone, ipfsHashs);
 
-      // console.log('Wholesaler Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Owner: ', owner);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone: ', phone);
-      // console.log(' IPFS Hashs: ', ipfsHashs[0]);
+      console.log('Wholesaler Details: ');
+      console.log(' Name: ', name);
+      console.log(' Owner: ', owner);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone: ', phone);
+      console.log(' IPFS Hashs: ', ipfsHashs[0]);
 
       expect(name).to.be.eq('Modi Enterprises');
       expect(owner).to.be.eq('Sohel Modi');
@@ -313,43 +313,43 @@ describe('Admin', () => {
         await productVerificationContract.getCode(1);
       // console.log(productId, status, supplyChain, currentOwner, isValue);
 
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
 
       expect(productId).to.be.eq(1);
       expect(status).to.be.eq(0);
@@ -384,12 +384,12 @@ describe('Admin', () => {
         await retailerContract.getRetailer(retailer.address);
       // console.log(name, owner, contactAddress, phone, ipfsHashs);
 
-      // console.log('Retailer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Owner: ', owner);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone: ', phone);
-      // console.log(' IPFS Hashs: ', ipfsHashs[0]);
+      console.log('Retailer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Owner: ', owner);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone: ', phone);
+      console.log(' IPFS Hashs: ', ipfsHashs[0]);
 
       expect(name).to.be.eq('Charit Stores');
       expect(owner).to.be.eq('Charit Vinay');
@@ -408,54 +408,54 @@ describe('Admin', () => {
         await productVerificationContract.getCode(1);
       // console.log(productId, status, supplyChain, currentOwner, isValue);
 
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Retailer:');
-      // console.log('     Retailer Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by retailer: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Customer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to customer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[2].transferTimestamp,
+      );
 
       expect(productId).to.be.eq(1);
       expect(status).to.be.eq(0);
@@ -487,12 +487,12 @@ describe('Admin', () => {
 
       const [name, contactAddress, phoneNumer, products] =
         await customerContract.getCustomer(customer.address);
-      // console.log(name, contactAddress, phoneNumer, products);
-      // console.log('Customer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log(name, contactAddress, phoneNumer, products);
+      console.log('Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
     });
 
     it('Should add customer to the supply chain', async () => {
@@ -508,65 +508,65 @@ describe('Admin', () => {
 
       // * console.log(productId, status, supplyChain, currentOwner, isValue);
 
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Retailer:');
-      // console.log('     Retailer Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by retailer: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Customer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to customer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Customer:');
-      // console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by customer: ',
-      //   supplyChain[3].recivalTimestamp,
-      // );
-      // console.log('     Next customer Address: ', supplyChain[3].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to next customer: ',
-      //   supplyChain[3].transferTimestamp,
-      // );
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[3].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[3].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[3].transferTimestamp,
+      );
 
       expect(productId).to.be.eq(1);
       expect(status).to.be.eq(1);
@@ -600,11 +600,11 @@ describe('Admin', () => {
       const [name, contactAddress, phoneNumer, products] =
         await customerContract.getCustomer(customer.address);
 
-      // console.log('Customer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log('Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
 
       expect(name).to.be.eq('Anoop');
       expect(contactAddress).to.be.eq('BDB202');
@@ -627,13 +627,13 @@ describe('Admin', () => {
       const [isInProduction, brand, name, model, description, ipfsHashs] =
         await productContract.getProduct(2);
 
-      // console.log('Product deatails:');
-      // console.log('Brand : ', brand);
-      // console.log('Name : ', name);
-      // console.log('Model : ', model);
-      // console.log('Description : ', description);
-      // console.log('Ipfs Hashs : ', ipfsHashs[0]);
-      // console.log('Is In Production : ', isInProduction);
+      console.log('Product deatails:');
+      console.log('Brand : ', brand);
+      console.log('Name : ', name);
+      console.log('Model : ', model);
+      console.log('Description : ', description);
+      console.log('Ipfs Hashs : ', ipfsHashs[0]);
+      console.log('Is In Production : ', isInProduction);
 
       expect(isInProduction).to.be.eq(true);
       expect(brand).to.be.eq('Nike');
@@ -759,65 +759,65 @@ describe('Admin', () => {
 
       // * console.log(productId, status, supplyChain, currentOwner, isValue);
 
-      // console.log('Code - 2 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Retailer:');
-      // console.log('     Retailer Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by retailer: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Customer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to customer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Customer:');
-      // console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by customer: ',
-      //   supplyChain[3].recivalTimestamp,
-      // );
-      // console.log('     Next customer Address: ', supplyChain[3].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to next customer: ',
-      //   supplyChain[3].transferTimestamp,
-      // );
+      console.log('Code - 2 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[3].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[3].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[3].transferTimestamp,
+      );
 
       expect(productId).to.be.eq(2);
       expect(status).to.be.eq(1);
@@ -851,12 +851,12 @@ describe('Admin', () => {
       const [name, contactAddress, phoneNumer, products] =
         await customerContract.getCustomer(customer.address);
 
-      // console.log(name, contactAddress, phoneNumer, products);
-      // console.log('Customer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log(name, contactAddress, phoneNumer, products);
+      console.log('Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
 
       expect(name).to.be.eq('Anoop');
       expect(contactAddress).to.be.eq('BDB202');
@@ -877,11 +877,11 @@ describe('Admin', () => {
         await customerContract.getCustomer(newCustomer.address);
       // console.log(name, contactAddress, phoneNumer, products);
 
-      // console.log('New Customer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log('New Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
 
       expect(name).to.be.eq('Amit');
       expect(contactAddress).to.be.eq('IIITK');
@@ -892,69 +892,69 @@ describe('Admin', () => {
     it('Should change ownership code-1 from Anoop to Amit', async () => {
       let productId, status, supplyChain, currentOwner, isValue;
 
-      // [productId, status, supplyChain, currentOwner, isValue] =
-      //   await productVerificationContract.getCode(1);
+      [productId, status, supplyChain, currentOwner, isValue] =
+        await productVerificationContract.getCode(1);
 
-      // console.log('\n\n Before Ownership change (from Anoop to Amit): \n');
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Retailer:');
-      // console.log('     Retailer Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by retailer: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Customer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to customer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Customer:');
-      // console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by customer: ',
-      //   supplyChain[3].recivalTimestamp,
-      // );
-      // console.log('     Next customer Address: ', supplyChain[3].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to next customer: ',
-      //   supplyChain[3].transferTimestamp,
-      // );
+      console.log('\n\n Before Ownership change (from Anoop to Amit): \n');
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[3].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[3].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[3].transferTimestamp,
+      );
 
       const tx = await customerContract
         .connect(customer)
@@ -964,66 +964,66 @@ describe('Admin', () => {
       [productId, status, supplyChain, currentOwner, isValue] =
         await productVerificationContract.getCode(1);
 
-      // console.log('\n\n After Ownership change (from Anoop to Amit): \n');
-      // console.log('Code - 1 details: ');
-      // console.log('Product Id: ', productId);
-      // console.log('Status: ', status);
-      // console.log('Supply Chain Map:');
-      // console.log('   Manufacturer:');
-      // console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product created ',
-      //   supplyChain[0].recivalTimestamp,
-      // );
-      // console.log('     Distributor Address: ', supplyChain[0].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to distributor: ',
-      //   supplyChain[0].transferTimestamp,
-      // );
-      // console.log('   Distributor:');
-      // console.log('     Distributor Address: ', supplyChain[1].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by Distributor: ',
-      //   supplyChain[1].recivalTimestamp,
-      // );
-      // console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to wholesaler: ',
-      //   supplyChain[1].transferTimestamp,
-      // );
-      // console.log('   Wholesaler:');
-      // console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by wholesaler: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Retailer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to retailer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Retailer:');
-      // console.log('     Retailer Address: ', supplyChain[2].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by retailer: ',
-      //   supplyChain[2].recivalTimestamp,
-      // );
-      // console.log('     Customer Address: ', supplyChain[2].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to customer: ',
-      //   supplyChain[2].transferTimestamp,
-      // );
-      // console.log('   Customer:');
-      // console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      // console.log(
-      //   '     Timestamp at which product recived by customer: ',
-      //   supplyChain[3].recivalTimestamp,
-      // );
-      // console.log('     Next customer Address: ', supplyChain[3].transferTo);
-      // console.log(
-      //   '     Timestamp at which product is transfered to next customer: ',
-      //   supplyChain[3].transferTimestamp,
-      // );
+      console.log('\n\n After Ownership change (from Anoop to Amit): \n');
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[3].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[3].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[3].transferTimestamp,
+      );
 
       expect(currentOwner).to.be.eq(newCustomer.address);
       expect(status).to.be.eq(2);
@@ -1034,11 +1034,11 @@ describe('Admin', () => {
         await customerContract.getCustomer(newCustomer.address);
       // console.log(name, contactAddress, phoneNumer, products);
 
-      // console.log('New Customer Details: ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log('New Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
 
       expect(name).to.be.eq('Amit');
       expect(contactAddress).to.be.eq('IIITK');
@@ -1050,11 +1050,11 @@ describe('Admin', () => {
       const [name, contactAddress, phoneNumer, products] =
         await customerContract.getCustomer(customer.address);
 
-      // console.log('Old Customer Details : ');
-      // console.log(' Name: ', name);
-      // console.log(' Contact Address: ', contactAddress);
-      // console.log(' Phone Number: ', phoneNumer);
-      // console.log(' Proudcts: ', products);
+      console.log('Old Customer Details : ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
 
       expect(name).to.be.eq('Anoop');
       expect(contactAddress).to.be.eq('BDB202');
