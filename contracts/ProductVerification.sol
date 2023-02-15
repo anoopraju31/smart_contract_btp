@@ -100,6 +100,18 @@ contract ProductVerification {
         code.supplyChain.push(supplyChain);
     }
 
+    function updateSupplyChainTransfer(
+        uint _codeId,
+        address _tranferTo,
+        uint _tranferTimestamp
+    ) external {
+        Code storage code = codes[_codeId];
+        code.supplyChain[code.supplyChain.length - 1].transferTo = _tranferTo;
+        code
+            .supplyChain[code.supplyChain.length - 1]
+            .transferTimestamp = _tranferTimestamp;
+    }
+
     function addOwner(uint _codeId, address _owner) public {
         Code storage code = codes[_codeId];
         code.currentOwner = _owner;

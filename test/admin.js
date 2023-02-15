@@ -163,7 +163,7 @@ describe('Admin', () => {
 
       const [productId, status, supplyChain, currentOwner, isValue] =
         await productVerificationContract.getCode(1);
-      console.log(productId, status, supplyChain, currentOwner, isValue);
+      // console.log(productId, status, supplyChain, currentOwner, isValue);
 
       console.log('Code - 1 details: ');
       console.log('Product Id: ', productId);
@@ -398,6 +398,22 @@ describe('Admin', () => {
       expect(ipfsHashs[0]).to.be.eq('Vinay');
     });
 
+    it('Should create a coustomer', async () => {
+      const tx = await customerContract
+        .connect(customer)
+        .createCustomer('Anoop', 'BDB202', 123459876);
+      await tx.wait();
+
+      const [name, contactAddress, phoneNumer, products] =
+        await customerContract.getCustomer(customer.address);
+      console.log(name, contactAddress, phoneNumer, products);
+      console.log('Customer Details: ');
+      console.log(' Name: ', name);
+      console.log(' Contact Address: ', contactAddress);
+      console.log(' Phone Number: ', phoneNumer);
+      console.log(' Proudcts: ', products);
+    });
+
     it('Should add the retailer to the supply chain of code', async () => {
       const tx = await retailerContract
         .connect(retailer)
@@ -451,10 +467,11 @@ describe('Admin', () => {
         '     Timestamp at which product recived by retailer: ',
         supplyChain[2].recivalTimestamp,
       );
-      console.log('     Customer Address: ', supplyChain[2].transferTo);
       console.log(
-        '     Timestamp at which product is transfered to customer: ',
-        supplyChain[2].transferTimestamp,
+        '     Customer Address: 0x0000000000000000000000000000000000000000',
+      );
+      console.log(
+        '     Timestamp at which product is transfered to customer:  BigNumber { value: "0" }',
       );
 
       expect(productId).to.be.eq(1);
@@ -477,22 +494,6 @@ describe('Admin', () => {
       expect(supplyChain[3].transferTimestamp).to.be.eq(1675464237);
       // expect(currentOwner).to.be.eq(0x0000000000000000000000000000000000000000);
       expect(isValue).to.be.eq(true);
-    });
-
-    it('Should create a coustomer', async () => {
-      const tx = await customerContract
-        .connect(customer)
-        .createCustomer('Anoop', 'BDB202', 123459876);
-      await tx.wait();
-
-      const [name, contactAddress, phoneNumer, products] =
-        await customerContract.getCustomer(customer.address);
-      console.log(name, contactAddress, phoneNumer, products);
-      console.log('Customer Details: ');
-      console.log(' Name: ', name);
-      console.log(' Contact Address: ', contactAddress);
-      console.log(' Phone Number: ', phoneNumer);
-      console.log(' Proudcts: ', products);
     });
 
     it('Should add customer to the supply chain', async () => {
@@ -546,26 +547,26 @@ describe('Admin', () => {
         supplyChain[2].transferTimestamp,
       );
       console.log('   Retailer:');
-      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log('     Retailer Address: ', supplyChain[3].entityAddress);
       console.log(
         '     Timestamp at which product recived by retailer: ',
-        supplyChain[2].recivalTimestamp,
-      );
-      console.log('     Customer Address: ', supplyChain[2].transferTo);
-      console.log(
-        '     Timestamp at which product is transfered to customer: ',
-        supplyChain[2].transferTimestamp,
-      );
-      console.log('   Customer:');
-      console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      console.log(
-        '     Timestamp at which product recived by customer: ',
         supplyChain[3].recivalTimestamp,
       );
-      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log('     Customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[3].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[4].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[4].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[4].transferTo);
       console.log(
         '     Timestamp at which product is transfered to next customer: ',
-        supplyChain[3].transferTimestamp,
+        supplyChain[4].transferTimestamp,
       );
 
       expect(productId).to.be.eq(1);
@@ -746,7 +747,7 @@ describe('Admin', () => {
       expect(isValue).to.be.eq(true);
     });
 
-    it('Should add custoner to the supply chain of new product', async () => {
+    it('Should add customer to the supply chain of new product', async () => {
       const tx = await retailerContract.addCustomerToCode(
         2,
         customer.address,
@@ -797,26 +798,26 @@ describe('Admin', () => {
         supplyChain[2].transferTimestamp,
       );
       console.log('   Retailer:');
-      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log('     Retailer Address: ', supplyChain[3].entityAddress);
       console.log(
         '     Timestamp at which product recived by retailer: ',
-        supplyChain[2].recivalTimestamp,
-      );
-      console.log('     Customer Address: ', supplyChain[2].transferTo);
-      console.log(
-        '     Timestamp at which product is transfered to customer: ',
-        supplyChain[2].transferTimestamp,
-      );
-      console.log('   Customer:');
-      console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      console.log(
-        '     Timestamp at which product recived by customer: ',
         supplyChain[3].recivalTimestamp,
       );
-      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log('     Customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[3].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[4].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[4].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[4].transferTo);
       console.log(
         '     Timestamp at which product is transfered to next customer: ',
-        supplyChain[3].transferTimestamp,
+        supplyChain[4].transferTimestamp,
       );
 
       expect(productId).to.be.eq(2);
@@ -934,26 +935,26 @@ describe('Admin', () => {
         supplyChain[2].transferTimestamp,
       );
       console.log('   Retailer:');
-      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log('     Retailer Address: ', supplyChain[3].entityAddress);
       console.log(
         '     Timestamp at which product recived by retailer: ',
-        supplyChain[2].recivalTimestamp,
-      );
-      console.log('     Customer Address: ', supplyChain[2].transferTo);
-      console.log(
-        '     Timestamp at which product is transfered to customer: ',
-        supplyChain[2].transferTimestamp,
-      );
-      console.log('   Customer:');
-      console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      console.log(
-        '     Timestamp at which product recived by customer: ',
         supplyChain[3].recivalTimestamp,
       );
-      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log('     Customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[3].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[4].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[4].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[4].transferTo);
       console.log(
         '     Timestamp at which product is transfered to next customer: ',
-        supplyChain[3].transferTimestamp,
+        supplyChain[4].transferTimestamp,
       );
 
       const tx = await customerContract
@@ -1003,26 +1004,37 @@ describe('Admin', () => {
         supplyChain[2].transferTimestamp,
       );
       console.log('   Retailer:');
-      console.log('     Retailer Address: ', supplyChain[2].entityAddress);
+      console.log('     Retailer Address: ', supplyChain[3].entityAddress);
       console.log(
         '     Timestamp at which product recived by retailer: ',
-        supplyChain[2].recivalTimestamp,
-      );
-      console.log('     Customer Address: ', supplyChain[2].transferTo);
-      console.log(
-        '     Timestamp at which product is transfered to customer: ',
-        supplyChain[2].transferTimestamp,
-      );
-      console.log('   Customer:');
-      console.log('     Customer Address: ', supplyChain[3].entityAddress);
-      console.log(
-        '     Timestamp at which product recived by customer: ',
         supplyChain[3].recivalTimestamp,
       );
-      console.log('     Next customer Address: ', supplyChain[3].transferTo);
+      console.log('     Customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[3].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[4].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[4].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[4].transferTo);
       console.log(
         '     Timestamp at which product is transfered to next customer: ',
-        supplyChain[3].transferTimestamp,
+        supplyChain[4].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[5].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[5].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[5].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[5].transferTimestamp,
       );
 
       expect(currentOwner).to.be.eq(newCustomer.address);
@@ -1061,6 +1073,92 @@ describe('Admin', () => {
       expect(phoneNumer).to.be.eq(123459876);
       expect(products[0]).to.be.eq(2);
       expect(products.length).to.be.eq(1);
+    });
+  });
+
+  describe('Stolen Report', () => {
+    it('Should set the status to 3', async () => {
+      const tx = await customerContract.connect(newCustomer).reportStolen(1);
+      await tx.wait();
+
+      let productId, status, supplyChain, currentOwner, isValue;
+
+      [productId, status, supplyChain, currentOwner, isValue] =
+        await productVerificationContract.getCode(1);
+
+      console.log('Report stolen for code 1');
+      console.log('Code - 1 details: ');
+      console.log('Product Id: ', productId);
+      console.log('Status: ', status);
+      console.log('Supply Chain Map:');
+      console.log('   Manufacturer:');
+      console.log('     Manufacture Address: ', supplyChain[0].entityAddress);
+      console.log(
+        '     Timestamp at which product created ',
+        supplyChain[0].recivalTimestamp,
+      );
+      console.log('     Distributor Address: ', supplyChain[0].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to distributor: ',
+        supplyChain[0].transferTimestamp,
+      );
+      console.log('   Distributor:');
+      console.log('     Distributor Address: ', supplyChain[1].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by Distributor: ',
+        supplyChain[1].recivalTimestamp,
+      );
+      console.log('     Wholesaler Address: ', supplyChain[1].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to wholesaler: ',
+        supplyChain[1].transferTimestamp,
+      );
+      console.log('   Wholesaler:');
+      console.log('     Wholesaler Address: ', supplyChain[2].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by wholesaler: ',
+        supplyChain[2].recivalTimestamp,
+      );
+      console.log('     Retailer Address: ', supplyChain[2].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to retailer: ',
+        supplyChain[2].transferTimestamp,
+      );
+      console.log('   Retailer:');
+      console.log('     Retailer Address: ', supplyChain[3].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by retailer: ',
+        supplyChain[3].recivalTimestamp,
+      );
+      console.log('     Customer Address: ', supplyChain[3].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to customer: ',
+        supplyChain[3].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[4].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[4].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[4].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[4].transferTimestamp,
+      );
+      console.log('   Customer:');
+      console.log('     Customer Address: ', supplyChain[5].entityAddress);
+      console.log(
+        '     Timestamp at which product recived by customer: ',
+        supplyChain[5].recivalTimestamp,
+      );
+      console.log('     Next customer Address: ', supplyChain[5].transferTo);
+      console.log(
+        '     Timestamp at which product is transfered to next customer: ',
+        supplyChain[5].transferTimestamp,
+      );
+
+      expect(status).to.be.eq(3);
     });
   });
 });

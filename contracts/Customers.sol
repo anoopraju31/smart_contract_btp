@@ -6,6 +6,20 @@ interface IProductVerification {
     function changeStatus(uint _codeId) external;
 
     function changeOwner(uint _codeId, address _newOwner) external;
+
+    function updateSupplyChainTransfer(
+        uint _codeId,
+        address _tranferTo,
+        uint _tranferTimestamp
+    ) external;
+
+    function addToSupplyChain(
+        uint _codeId,
+        address _entityAddress,
+        uint _manufactureTimestamp,
+        address _transferAddrees,
+        uint _transferTimestamp
+    ) external;
 }
 
 contract Customers {
@@ -102,6 +116,21 @@ contract Customers {
         }
 
         oldCustomer.products.pop();
+        address temp;
+
+        productVerificationContract.updateSupplyChainTransfer(
+            _codeId,
+            _newOwner,
+            block.timestamp
+        );
+
+        productVerificationContract.addToSupplyChain(
+            _codeId,
+            _newOwner,
+            block.timestamp,
+            temp,
+            0
+        );
     }
 
     function checkProductOwnedByCustomer(
